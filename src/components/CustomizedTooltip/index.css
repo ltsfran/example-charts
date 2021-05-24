@@ -1,0 +1,27 @@
+.c-customized-tooltip {
+  background-color: #FFFFFF;
+  padding: 12px 16px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.16);
+}
+
+.c-customized-tooltip__title {
+  font-size: 12px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+}
+
+.c-customized-tooltip__title--orange {
+  color: #FA9300;
+}
+
+.c-customized-tooltip__title--blue {
+  color: #3276C5;
+}
+
+.c-customized-tooltip__value {
+  font-size: 22px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+}
