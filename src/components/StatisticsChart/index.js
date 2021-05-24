@@ -8,32 +8,8 @@ import {
   CartesianGrid
 } from 'recharts';
 import './index.css';
-
-function nFormatter(num, digits) {
-  var si = [
-    { value: 1, symbol: "" },
-    { value: 1E3, symbol: "k" },
-    { value: 1E6, symbol: "M" },
-    { value: 1E9, symbol: "G" },
-    { value: 1E12, symbol: "T" },
-    { value: 1E15, symbol: "P" },
-    { value: 1E18, symbol: "E" }
-  ];
-  var rx = /\.0+$|(\.[0-9]*[1-9])0+$/;
-  var i;
-  for (i = si.length - 1; i > 0; i--) {
-    if (num >= si[i].value) {
-      break;
-    }
-  }
-  return (num / si[i].value).toFixed(digits).replace(rx, "$1") + si[i].symbol;
-}
-
-function CustomizedActiveDot({ cx, cy, fill }) {
-  return (
-    <circle cx={cx} cy={cy} r={10} stroke="#FFFFFF" strokeWidth={4} fill={fill} />
-  );
-}
+import { CustomizedDot } from '../../components';
+import { nFormatter } from '../../utils';
 
 export function StatisticsChart() {
   const data = [
@@ -89,15 +65,15 @@ export function StatisticsChart() {
             type="monotone"
             dataKey="visits"
             stroke="#3276C5"
-            dot={false}
+            dot={<CustomizedDot fill="#3276C5" />}
+            activeDot={false}
             strokeWidth={4} />
           <Line
             type="monotone"
             dataKey="contacts"
             stroke="#FA9300"
-            dot={false}
-            activeDot={<CustomizedActiveDot fill="#FA9300"/>}
-            connectNulls
+            dot={<CustomizedDot fill="#FA9300" />}
+            activeDot={false}
             strokeWidth={4} />
           <Tooltip cursor={false} />
           <XAxis
