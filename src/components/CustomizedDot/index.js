@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export function CustomizedDot({ cx, cy, fill }) {
+export function CustomizedDot({ cx, cy, fill, onMouseOver }) {
   const INITIAL_RADIO_CIRCLE = 5;
   const HOVER_RADIO_CIRCLE = 10;
 
@@ -10,6 +10,7 @@ export function CustomizedDot({ cx, cy, fill }) {
   const handleMouseOver = () => {
     setIsHover(true);
     setRadioCircle(HOVER_RADIO_CIRCLE);
+    onMouseOver();
   };
 
   const handleMouseOut = () => {

@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {
   ResponsiveContainer,
   LineChart,
@@ -8,10 +9,12 @@ import {
   CartesianGrid
 } from 'recharts';
 import './index.css';
-import { CustomizedDot } from '../../components';
+import { CustomizedDot, CustomizedTooltip } from '../../components';
 import { nFormatter } from '../../utils';
 
 export function StatisticsChart() {
+  const [index, setIndex] = useState(0);
+
   const data = [
     {
       month: '16 mar',
@@ -53,7 +56,7 @@ export function StatisticsChart() {
   return (
     <div className="c-statistics-chart">
       <ResponsiveContainer width="100%" height={340}>
-        <LineChart data={data}>
+        <LineChart data={data} margin={{top: 15, right: 15, left: 15, bottom: 15}}>
           <YAxis
             tickFormatter={(tick) => nFormatter(tick, 1)}
             type="number"
@@ -65,17 +68,19 @@ export function StatisticsChart() {
             type="monotone"
             dataKey="visits"
             stroke="#3276C5"
-            dot={<CustomizedDot fill="#3276C5" />}
+            dot={<CustomizedDot fill="#3276C5" onMouseOver={() => setIndex(0)} />}
             activeDot={false}
             strokeWidth={4} />
           <Line
             type="monotone"
             dataKey="contacts"
             stroke="#FA9300"
-            dot={<CustomizedDot fill="#FA9300" />}
+            dot={<CustomizedDot fill="#FA9300" onMouseOver={() => setIndex(1)} />}
             activeDot={false}
             strokeWidth={4} />
-          <Tooltip cursor={false} />
+          <Tooltip
+            cursor={false}
+            content={<CustomizedTooltip index={index} />}/>
           <XAxis
             dataKey="month"
             axisLine={false}
