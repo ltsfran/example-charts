@@ -10,7 +10,7 @@ import {
 } from 'recharts';
 import './index.css';
 import { CustomizedDot, CustomizedTooltip } from '../../components';
-import { nFormatter } from '../../utils';
+import { nFormatter } from '../../../../utils';
 
 export function StatisticsChart() {
   const [index, setIndex] = useState(0);
